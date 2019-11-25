@@ -11,7 +11,7 @@ services:
       - 8181
       - 8101
     volumes:
-      - ./configuration/onos/{{ node.hostname }}.conf:/root/onos/config/cluster.json
+      - ./configuration/onos/{{ node.hostname }}.json:/root/onos/config/cluster.json
 {% endfor %}
 
 {% for node in atomix %}
