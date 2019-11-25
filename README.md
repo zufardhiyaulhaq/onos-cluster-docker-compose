@@ -11,6 +11,7 @@ nano configuration_variable.yaml
 - Install requirement
 ```
 pip3 install -r requirement.txt
+```
 - Generate configuration
 ```
 python3 generate_config.py
