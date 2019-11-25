@@ -1,0 +1,32 @@
+cluster {
+  cluster-id: onos
+  node {
+    id: {{ node.hostname }}
+    address: "{{ node.hostname }}:5679"
+  }
+  discovery {
+    type: bootstrap
+    {% set count = 1 %}
+    {% for node in atomix %}
+    nodes.{{ count }} {
+      id: {{ node.hostname }}
+      address: "{{ node.hostname }}:5679"      
+    }
+    {% set count = count + 1 %}
+    {% endfor %}
+  }
+}
+ 
+management-group {
+  type: raft
+  partitions: 1
+  storage.level: disk
+  members: [{% for node in atomix %}{{ node.hostname }}{% if not loop.last %},{% endif %}{% endfor %}]
+}
+ 
+partition-groups.raft {
+  type: raft
+  partitions: 3
+  storage.level: disk
+  members: [{% for node in atomix %}{{ node.hostname }}{% if not loop.last %},{% endif %}{% endfor %}]
+}

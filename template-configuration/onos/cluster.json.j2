@@ -1,0 +1,17 @@
+{
+  "name": "onos",
+  "node": {
+    "id": "{{ node.hostname }}",
+    "ip": "{{ node.hostname }}",
+    "port": 9876
+  },
+  "storage": [
+{% for node in atomix %}
+    {
+      "id": "{{ node.hostname }}",
+      "host": "{{ node.hostname }}",
+      "port": 5679
+    }{% if not loop.last %},{% endif %}
+{% endfor %}
+  ]
+}

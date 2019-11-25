@@ -1,0 +1,14 @@
+atomix_docker: atomix/atomix:3.1.5
+onos_docker: onosproject/onos:2.2.0
+
+atomix:
+- hostname: atomix-1
+- hostname: atomix-2
+- hostname: atomix-3
+
+onos:
+- hostname: onos-1
+- hostname: onos-2
+- hostname: onos-3
+
+  

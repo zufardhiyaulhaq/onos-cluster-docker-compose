@@ -1,0 +1,26 @@
+version: "3"
+services:
+{% for node in onos %}
+  {{ node.hostname }}:
+    hostname: {{ node.hostname }}
+    image: {{ data.onos_docker }}
+    expose:
+      - 6653
+      - 6640
+      - 9876
+      - 8181
+      - 8101
+    volumes:
+      - ./configuration/onos/{{ node.hostname }}.conf:/root/onos/config/cluster.json
+{% endfor %}
+
+{% for node in atomix %}
+  {{ node.hostname }}:
+    hostname: {{ node.hostname }}
+    image: {{ data.atomix_docker }}
+    expose:
+      - 5678
+      - 5679
+    volumes:
+      - ./configuration/atomix/{{ node.hostname }}.conf:/opt/atomix/conf/atomix.conf
+{% endfor %}
