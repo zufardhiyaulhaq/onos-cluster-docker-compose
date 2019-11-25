@@ -20,3 +20,10 @@ python3 generate_config.py
 ```
 docker-compose up -d
 ```
+- Get ONOS IP address
+```
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' onos-1
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' onos-2
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' onos-3
+```
+
