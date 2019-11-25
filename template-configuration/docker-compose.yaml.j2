@@ -2,6 +2,7 @@ version: "3"
 services:
 {% for node in onos %}
   {{ node.hostname }}:
+    container_name: {{ node.hostname }}
     hostname: {{ node.hostname }}
     image: {{ data.onos_docker }}
     expose:
@@ -16,6 +17,7 @@ services:
 
 {% for node in atomix %}
   {{ node.hostname }}:
+    container_name: {{ node.hostname }}
     hostname: {{ node.hostname }}
     image: {{ data.atomix_docker }}
     expose:
